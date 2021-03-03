@@ -1,7 +1,7 @@
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-final dominiourl = 'http://colbay.co/horoscopo/wp-json/wp/v2/posts';
+final dominiourl = 'http://colbay.co/horoscopo/wp-json/wp/v2/categories';
 
 Future<List> post() async {
   final response =

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
+import 'package:yotu_tribu_app/user/ui/screens/postSiganl.dart';
 import 'user/repository/api/wordpresApi.dart';
 
 void main() {
@@ -18,12 +17,18 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: HomePage(),
+      initialRoute: HomePage.routeName,
+      routes: {
+        HomePage.routeName: (BuildContext contex) => HomePage(),
+        PostSignal.routeName: (BuildContext context) => PostSignal(),
+      },
     );
   }
 }
 
 class HomePage extends StatelessWidget {
   const HomePage({Key key}) : super(key: key);
+  static const routeName = 'home';
 
   @override
   Widget build(BuildContext context) {
@@ -36,11 +41,30 @@ class HomePage extends StatelessWidget {
             builder: (BuildContext context, AsyncSnapshot snapshot) {
               if (snapshot.hasData) {
                 var posts = snapshot.data;
-                return ListView.builder(
+                return ListView.separated(
+                    separatorBuilder: (context, index) => Divider(),
                     itemCount: posts.length,
                     itemBuilder: (context, index) {
                       Map post = snapshot.data[index];
-                      return Text('Texto repetitivo');
+
+                      return GestureDetector(
+                          onTap: () => Navigator.of(context)
+                              .pushNamed(PostSignal.routeName, arguments: post),
+                          child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: <Widget>[
+                                FadeInImage(
+                                    placeholder:
+                                        AssetImage('assets/loading.gif'),
+                                    image: NetworkImage(post['acf']['imagen']
+                                        ['sizes']['thumbnail'])),
+                                Text(post['name'],
+                                    style: TextStyle(
+                                        fontSize: 25.0,
+                                        fontWeight: FontWeight.bold)),
+                                Text(post['acf']['fechas'])
+                              ]));
                     });
               } else {
                 return Center(child: CircularProgressIndicator());
