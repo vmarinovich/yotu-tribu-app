@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:yotu_tribu_app/user/ui/screens/categorias.dart';
 import 'package:yotu_tribu_app/user/ui/screens/postSiganl.dart';
+import 'package:yotu_tribu_app/user/ui/widgets/menuSidebar.dart';
 import 'user/repository/api/wordpresApi.dart';
 
 void main() {
@@ -21,6 +23,7 @@ class MyApp extends StatelessWidget {
       routes: {
         HomePage.routeName: (BuildContext contex) => HomePage(),
         PostSignal.routeName: (BuildContext context) => PostSignal(),
+        Categorias.routeName: (BuildContext context) => Categorias(),
       },
     );
   }
@@ -33,6 +36,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        drawer: menu(context),
         appBar: AppBar(
           title: Text('Yotu Tribu App'),
         ),

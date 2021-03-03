@@ -14,18 +14,14 @@ class PostSignal extends StatefulWidget {
 class _PostSignalState extends State<PostSignal> {
   @override
   Widget build(BuildContext context) {
-    Map post = ModalRoute.of(context).settings.arguments as Map;
     return Scaffold(
-        appBar: AppBar(
-          title: Text(post['name']),
-        ),
         body: Stack(
-          children: <Widget>[
-            ListView(
-              children: <Widget>[DailyPost()],
-            ),
-            GradientBackground()
-          ],
-        ));
+      children: <Widget>[
+        ListView(
+          children: <Widget>[DailyPost()],
+        ),
+        GradientBackground()
+      ],
+    ));
   }
 }

@@ -7,8 +7,9 @@ class DailyPost extends StatelessWidget {
 
     final iconSign = Container(
         margin: EdgeInsets.only(
-          top: 230.0,
+          top: 210.0,
           left: 0.0,
+          bottom: 0.0,
         ),
         width: 120.0,
         height: 150.0,
@@ -19,7 +20,6 @@ class DailyPost extends StatelessWidget {
 
     final titleSign = Container(
         margin: EdgeInsets.only(
-          top: 0.0,
           left: 20.0,
           right: 20.0,
         ),
